@@ -41,7 +41,7 @@ import org.apache.uima.util.XMLSerializer;
 import org.xml.sax.SAXException;
 
 /**
- * A simple CAS consumer that writes the CAS to XMI format.
+ * A simple CAS consumer that writes the CAS to a output file.
  * <p>
  * This CAS Consumer takes one parameter:
  * <ul>
@@ -54,13 +54,13 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 	 * Name of configuration parameter that must be set to the path of a
 	 * directory into which the output files will be written.
 	 */
-	public static final String PARAM_OUTPUTDIR = "OutputDirectory";
-
-
-
+	public static final String PARAM_OUTPUTDIR = "./src/main/resources/data/data_out/hw1-chongshm.out";
+	/**
+	 * We need to initialize the file we what to save the processed data. Make the file clean.  
+	 */
 	public void initialize() throws ResourceInitializationException {
 
-		File f = new File("./src/main/resources/data/hw1-chongshm.out");
+		File f = new File(PARAM_OUTPUTDIR);
 		FileWriter fw;
 		try {
 			fw = new FileWriter(f);
@@ -73,16 +73,14 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 		
 	}
 
-	/**
+	/**@author machongshen
 	 * Processes the CAS which was populated by the TextAnalysisEngines. <br>
-	 * In this case, the CAS wrote the Gene name Entity into the output file.
-	 * file .
+	 * In this case, the CAS wrote the Gene Name Entity into the output file.
+	 * The output file is listing the Gene tag and name which is generated from the TextAnalysisEngines.
 	 * 
 	 * @param aCAS
 	 *            a CAS which has been populated by the TAEs
 	 * 
-	 * @throws ResourceProcessException
-	 *             if there is an error in processing the Resource
 	 * 
 	 * @see org.apache.uima.collection.base_cpm.CasObjectProcessor#processCas(org.apache.uima.cas.CAS)
 	 */
@@ -99,7 +97,7 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 		try {
 
 			FileWriter fw = new FileWriter(
-					"./src/main/resources/data/data_out/hw1-chongshm.out",true);
+					PARAM_OUTPUTDIR,true);
 			
 			BufferedWriter output = new BufferedWriter(fw);
 			FSIterator it = jcas.getAnnotationIndex(
@@ -117,7 +115,11 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 						.next();
 				Gene_Sign = annotation.getGene_Sign();
 				Gene_Mark = annotation.getGene_Mark();
-				
+				/**
+				 * This two "for" intend to get the accurate "start" and "end" position.
+				 * With 2 count, I could use it to calculate the numbers of all spaces.
+				 *  
+				 */
 			for(int i = 0; i < annotation.getStart(); i++ )
 				{
 					if (abc[i] == ' ' )
@@ -153,19 +155,4 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 
 	}
 
-	/**
-	 * Serialize a CAS to a file in XMI format
-	 * 
-	 * @param aCas
-	 *            CAS to serialize
-	 * @param name
-	 *            output file
-	 * @throws SAXException
-	 *             -
-	 * @throws Exception
-	 *             -
-	 * 
-	 * @throws ResourceProcessException
-	 *             -
-	 */
 }

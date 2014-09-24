@@ -112,6 +112,9 @@ public class FileSystemCollectionReader_Line_By_Line extends
 		} catch (CASException e) {
 			throw new CollectionException(e);
 		}
+/*    for (int i= 0; i<sentences.size())
+ * 
+ */		
 		String line = (String) sentences.get(mCurrentIndex++);
 		jcas.setDocumentText(line);
 	}

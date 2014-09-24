@@ -31,9 +31,9 @@ import org.apache.uima.collection.metadata.CpeDescription;
 import org.apache.uima.util.XMLInputSource;
 
 /**
- * Main Class that runs a Collection Processing Engine (CPE). This class reads a CPE Descriptor as a
- * command-line argument and instantiates the CPE. It also registers a callback listener with the
- * CPE, which will print progress and statistics to System.out.
+ * Main Class that runs a Collection Processing Engine (CPE). This class reads a CPE 
+ * Descriptor as a command-line argument and instantiates the CPE. It also registers 
+ * a callback listener with the CPE, which will print progress and statistics to System.out.
  * 
  * 
  */

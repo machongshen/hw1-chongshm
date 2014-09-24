@@ -16,7 +16,15 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
-
+/**@author machongshen
+ * Stanford NER is a Java implementation of a Named Entity Recognizer. 
+ * Named Entity Recognition (NER) labels sequences of words in a text 
+ * which are the names of things, such as person and company names, or 
+ * gene and protein names. But using this class, the after analysis, the result of 
+ * gene name tag is not very satisfied. 
+ * 
+ * 
+ */
 public class PosTagNamedEntityRecognizer {
 
 	private StanfordCoreNLP pipeline;
@@ -52,27 +60,10 @@ public class PosTagNamedEntityRecognizer {
 				candidate.clear();
 			}
 		}
-		// System.out.println(begin2end);
+		
 		return begin2end;
 
 	}
 
-	// public static void main(String[] args)
-	// throws ResourceInitializationException {
-	//
-	// String text = "Takayasu's watermelon apple";
-	// PosTagNamedEntityRecognizer a = new PosTagNamedEntityRecognizer();
-	// Map<Integer, Integer> m = a.getGeneSpans(text);
-	// System.out.println(m.size());
-	// Iterator iter = m.entrySet().iterator();
-	// while (iter.hasNext()) {
-	// Map.Entry entry = (Map.Entry) iter.next();
-	// Object key = entry.getKey();
-	// Object val = entry.getValue();
-	//
-	// System.out.println(text.substring((Integer)key, (Integer)val));
-	// System.out.println((Integer)key+"|"+ (Integer)val);
-	// }
-	//
-	// }
+
 }

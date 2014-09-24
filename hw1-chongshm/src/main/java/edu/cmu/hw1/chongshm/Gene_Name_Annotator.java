@@ -13,7 +13,13 @@ import org.apache.uima.resource.ResourceInitializationException;
 import edu.cmu.hw1chongshm.types;
 
 public class Gene_Name_Annotator extends JCasAnnotator_ImplBase {
-	@Override
+	/**@author machongshen
+	 * This annotator that discovers Gene Tag and Name in the file by using the Stanford-nlp API.
+	 * This code first creates the new PosTagNamedEntityRecognizer class, then analyzes each of the 
+	 * arguments using the stanford nlp. And also save the types of Gene name tag to the CAS. 
+	 * 
+	 * @return void no need to return.
+	 */
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		// TODO Auto-generated method stub
 		String docText = aJCas.getDocumentText();
