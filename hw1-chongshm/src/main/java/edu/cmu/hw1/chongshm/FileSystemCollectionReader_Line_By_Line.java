@@ -40,6 +40,8 @@ import org.apache.uima.util.FileUtils;
 import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
 
+import edu.cmu.hw1chongshm.types;
+
 /**
  * A simple collection reader that reads documents from a directory in the
  * filesystem lin by line. By using the BufferedReader function. I realized this
@@ -70,11 +72,12 @@ public class FileSystemCollectionReader_Line_By_Line extends
 		
 		String sentence = ((String) getConfigParameterValue(PARAM_INPUTDIR))
 				.trim() + "/sample.in";
+		mCurrentIndex = 0;
 		try {
 			sentences = linereadfile(sentence);
 		} catch (Exception e) {
 		}
-		mCurrentIndex = 0;
+		
 	}
 
 	/**
@@ -87,8 +90,10 @@ public class FileSystemCollectionReader_Line_By_Line extends
 		String line = null;
 		sentences = new ArrayList<String>();
 		BufferedReader in = new BufferedReader(new FileReader(sentence));
-		line = in.readLine();
+	
+
 		while ((line = in.readLine()) != null) {
+			
 			sentences.add(line);
 		}
 		in.close();
@@ -112,11 +117,15 @@ public class FileSystemCollectionReader_Line_By_Line extends
 		} catch (CASException e) {
 			throw new CollectionException(e);
 		}
-/*    for (int i= 0; i<sentences.size())
- * 
- */		
+		/**
+		* test
+		*/
+		String s =(String) sentences.get(0);
+		
+		
 		String line = (String) sentences.get(mCurrentIndex++);
 		jcas.setDocumentText(line);
+		//System.out.println(line);
 	}
 
 	/**

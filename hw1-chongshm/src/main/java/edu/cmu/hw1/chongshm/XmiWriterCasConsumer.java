@@ -107,10 +107,11 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 			String Gene_Mark = "";
 			int start = 0;
 			int end = 0;
-			int count= 0;
-			int count1=0;
-			
-			if (it.hasNext()) {
+						
+			while (it.hasNext()) {
+				int count= 0;
+				int count1=0;
+
 				edu.cmu.hw1chongshm.types annotation = (edu.cmu.hw1chongshm.types) it
 						.next();
 				Gene_Sign = annotation.getGene_Sign();
@@ -136,7 +137,7 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 				}
 				
 			}
-				System.out.println(count);
+				//System.out.println(count);
 				start = annotation.getStart()-count;
 				end = annotation.getEnd()-count-count1-1;
 				output.append(Gene_Sign + "|" + start + " " + end + "|"

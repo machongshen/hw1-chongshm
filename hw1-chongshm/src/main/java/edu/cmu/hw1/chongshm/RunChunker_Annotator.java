@@ -26,8 +26,22 @@ import com.aliasi.util.Strings;
 
 import edu.cmu.hw1chongshm.types;
 
-public class RunChunker_Annotator extends JCasAnnotator_ImplBase {
 
+public class RunChunker_Annotator extends JCasAnnotator_ImplBase {
+	static Chunker chunker = null;
+	public void initialize( UimaContext context ){
+		File modelFile = new File(
+				"./src/main/resources/data/ne-en-bio-genetag.hmmchunker");
+		try {
+			chunker = (Chunker) AbstractExternalizable.readObject(modelFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	/**@author machongshen
 	 * This annotator that discovers Gene Tag and Name in the file by using the Lingpipe API.
 	 * This code first creates the chunker, then analyzes each of the arguments using the 
@@ -42,25 +56,16 @@ public class RunChunker_Annotator extends JCasAnnotator_ImplBase {
 		
 		// TODO Auto-generated method stub
 		// JCas jcas = null;
-		Chunker chunker = null;
+
 	/**  @see file "ne-en-bio-genetag.hmmchunker" from <url>http://alias-i.com/</url>
 	 * Like Other models, ne-en-bio-genetag.hmmchunker is labeled by task (ne for named-entity recognition), 
 	 * language (en for English), genre (bio for biology) and corpus (genetag for the GENETAG 
 	 * corpus
 	 * */
-		File modelFile = new File(
-				"./src/main/resources/data/ne-en-bio-genetag.hmmchunker");
+		
 		String docText = aJCas.getDocumentText();
 		String[] k = docText.split(" ", 2);
-		try {
-			chunker = (Chunker) AbstractExternalizable.readObject(modelFile);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		Chunking chunking = chunker.chunk(k[1]);
 		Set<Chunk> chunkSet = chunking.chunkSet();
 		Iterator<Chunk> it = chunkSet.iterator();

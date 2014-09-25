@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Mon Sep 22 22:21:54 EDT 2014
- * XML source: /Users/machongshen/git/hw1-chongshm/hw1-chongshm/src/main/resources/descripter/Type_system/Chapter01_types.xml
+ * Updated by JCasGen Wed Sep 24 21:38:07 EDT 2014
+ * XML source: /Users/machongshen/git/hw1-chongshm/hw1-chongshm/src/main/resources/descripter/Type_system/Type_System_hw1.xml
  * @generated */
 public class types extends Annotation {
   /** @generated

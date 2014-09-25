@@ -151,7 +151,7 @@ public class FileSystemCollectionReader extends CollectionReader_ImplBase {
 		String text = FileUtils.file2String(file, mEncoding);
 		// put document in CAS
 		jcas.setDocumentText(text);
-
+		System.out.println("text");
 		// set language if it was explicitly specified as a configuration
 		// parameter
 		if (mLanguage != null) {
